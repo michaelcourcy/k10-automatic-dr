@@ -4,14 +4,14 @@ In this example we'll demonstrate an automatic revovery from a disaster :
 
 Disaster will emulate this scenario : 
 - All application namespaces removed
-- Kasten and kasten namespace removed 
+- Kasten helm release and kasten namespace removed 
 
 And the  script `dr.sh` will :
 - Reinstall Kasten 
-- Restore Kasten Catalog and all profiles 
+- Restore Kasten Catalo, all profiles and all policies
 - Restore all the namespaces in parrallel
 
-This is only possible because Kasten if fully API oriented and designed with automation as a first preoccupation. 
+This is only possible because Kasten is fully API oriented and designed with automation as a first preoccupation. 
 Being able to completly automate the restoration of all the namespace in any new cluster has a strong impact on your RTO. 
 This example will show how much serenity you can obtain when you can so easily test disaster recovery. 
 
@@ -27,6 +27,9 @@ Follow for instance this [tutorial](https://github.com/michaelcourcy/kasten-on-e
 ## Create multiple applications  
 
 ### Pacman 
+
+If you already followed the [previous tutorial](https://github.com/michaelcourcy/kasten-on-eks) Pacman
+is already installed, otherwise.
 
 Create the application and play one or two games to create some data in the mongodb. 
 ```
@@ -152,7 +155,7 @@ EOF
 
 ## Create a dr.yaml file to store necessary informations for restoring the catalog 
 
-This file should be kept in a vault as it allow to restore all the applications in any cluster. 
+This file should be kept securely as it allow to restore all the applications in any cluster. 
 It will contain the following information: 
 - profile used for the disaster recovery policy 
 - Credential to access this profile 
@@ -192,7 +195,6 @@ kubectl delete ns kasten-io
 
 This script will 
 - Do a fresh install 
-- 
 - Recreate the profile and the dr pass phrase
 - Restore the catalog of the previous cluster 
 - Restore in parrallel the 4 namespaces : postgres, pacman, elastic and mysql 
