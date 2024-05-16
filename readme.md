@@ -1,8 +1,6 @@
 # Automate the complete restoration of your cluster
 
-In this example we'll demonstrate an automatic revovery from a disaster : 
-
-Disaster will emulate this scenario : 
+In this example we'll demonstrate an automatic revovery from a disaster. Disaster will emulate this scenario : 
 - All application namespaces removed
 - Kasten helm release and kasten namespace removed 
 
@@ -29,7 +27,7 @@ Follow for instance this [tutorial](https://github.com/michaelcourcy/kasten-on-e
 ### Pacman 
 
 If you already followed the [previous tutorial](https://github.com/michaelcourcy/kasten-on-eks) Pacman
-is already installed, otherwise.
+is already installed, otherwise follow these steps.
 
 Create the application and play one or two games to create some data in the mongodb. 
 ```
