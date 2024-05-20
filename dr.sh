@@ -39,6 +39,11 @@ echo "waiting for the kasten dr to complete"
 kubectl -n kasten-io wait --for='jsonpath={.status.succeeded}=1' job/k10-restore-k10restore
 echo "kasten dr completed" 
 
+# make sure crypto pod is running (it's the last pod to be restarted after dr)
+sleep 10
+echo "waiting for crypto pod to be ready" 
+kubectl -n kasten-io wait --for=condition=Ready pod -l component=crypto --timeout=120s
+
 echo "restoring all the apps with a batch restore action"
 cat<<EOF |kubectl create -f -
 apiVersion: actions.kio.kasten.io/v1alpha1
