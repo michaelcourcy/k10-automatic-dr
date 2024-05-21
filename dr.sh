@@ -36,7 +36,7 @@ helm install k10-restore kasten/k10restore --namespace=kasten-io \
 echo "restoration of the catalog started"
 
 echo "waiting for the kasten dr to complete" 
-kubectl -n kasten-io wait --for='jsonpath={.status.succeeded}=1' job/k10-restore-k10restore
+kubectl -n kasten-io wait --for='jsonpath={.status.succeeded}=1' job/k10-restore-k10restore --timeout=120s
 echo "kasten dr completed" 
 
 # make sure crypto pod is running (it's the last pod to be restarted after dr)
